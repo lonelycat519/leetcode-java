@@ -17,32 +17,47 @@ public class Solution {
         if(l1==null)    return l2;
         if(l2==null)    return l1;
         
-        ListNode head;
-        ListNode now1;
-        ListNode now2;
+        ListNode head = new ListNode(0);
+        ListNode now1 = l1;
+        ListNode now2 = l2;
         
-        if(l1.val<l2.val){
-            head = l1;
-            now2 = l2;
+        if(now1.val<=now2.val){
+            head.val = now1.val;
+            now1 = now1.next;
         }   else{
-            head = l2;
-            now2 = l1;
+            head.val = now2.val;
+            now2 = now2.next;
         }
-        now1 = head;
         
-        while(now1.next!=null&now2!=null){
-            if(now1.next.val<=now2.val){
+        ListNode now = head;
+        
+        while(now1!=null&now2!=null){
+            if(now1.val<=now2.val){
+                now.next = new ListNode(now1.val);
                 now1 = now1.next;
             }   else{
-                ListNode temp = now1.next;
-                now1.next = now2;
-                now1.next.next = temp;
+                now.next = new ListNode(now2.val);
+                now2 = now2.next;
+            }
+            now = now.next;
+        }
+        
+        if(now1!=null){
+            while(now1!=null){
+                now.next = new ListNode(now1.val);
+                now = now.next;
+                now1 = now1.next;
+            }
+        }   else if(now2!=null){
+            while(now2!=null){
+                now.next = new ListNode(now2.val);
+                now = now.next;
                 now2 = now2.next;
             }
         }
-        if(now2!=null)
-            now1.next = now2;
         
         return head;
+    }
+}eturn head;
     }
 }
