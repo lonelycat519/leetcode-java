@@ -22,3 +22,24 @@ public class Solution {
         }
     }
 }
+
+// Second Version
+public class Solution {
+    public void merge(int A[], int m, int B[], int n) {
+        if(m<0 || n<0)    return;
+        
+        int len = m+n;
+
+        while(m>0 && n>0){
+            if(A[m-1]>=B[n-1]){
+                A[--len] = A[--m];
+            } else{
+                A[--len] = B[--n];
+            }
+        }
+        
+        while(n>0){
+            A[--len] = B[--n];
+        }
+    }
+}
