@@ -49,3 +49,33 @@ public class Solution {
         return result;
     }
 }
+
+
+// Second Version: consider 2 Node as a unit
+public class Solution {
+    public ListNode swapPairs(ListNode head) {
+        if(head==null || head.next==null)
+            return head;
+        
+        ListNode result = head.next;
+        
+        // Do something...
+        ListNode now = head.next.next;
+        ListNode previous = head.next;
+        while(now!=null && now.next!=null){
+            // Swap
+            previous.next = now.next;
+            ListNode temp = now.next.next;
+            now.next.next = now;
+            now.next = temp;
+            
+            previous = now;
+            now = now.next;
+        }
+        
+        head.next = result.next;
+        result.next = head;
+        
+        return result;
+    }
+}
