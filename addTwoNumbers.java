@@ -59,3 +59,47 @@ public class Solution {
         return head;
     }
 }
+
+
+// Second Version
+public class Solution {
+    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+        // Start typing your Java solution below
+        // DO NOT write main() function
+        if(l1 == null || l2 == null) {        
+            return (l1 == null) ? l2 : ((l2 == null) ? null : l2);
+        }
+
+        ListNode result = new ListNode(0);
+        ListNode now = result;
+        ListNode now1 = l1;
+        ListNode now2 = l2;
+        int temp = 0;
+        
+        while(now1!=null || now2!=null) {            
+            if(now1!=null) {
+                temp += now1.val;
+                now1 = now1.next;
+            }
+            if(now2!=null) {
+                temp += now2.val;
+                now2 = now2.next;
+            }
+            
+            now.next = new ListNode(0);
+            now = now.next;
+            if(temp >= 10) {
+                now.val = temp - 10;
+                temp = 1;
+            } else {
+                now.val = temp;
+                temp = 0;
+            }
+        }
+        if(temp != 0) {
+            now.next = new ListNode(temp);    
+        }
+        
+        return result.next;
+    }
+}
