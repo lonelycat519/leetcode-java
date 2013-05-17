@@ -57,3 +57,56 @@ public class Solution {
             return head;
     }
 }
+
+
+// Version 2
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) {
+ *         val = x;
+ *         next = null;
+ *     }
+ * }
+ */
+public class Solution {
+    public ListNode deleteDuplicates(ListNode head) {
+        // Start typing your Java solution below
+        // DO NOT write main() function
+        if(head == null)
+            return null;            
+            
+        ListNode h = new ListNode(0);
+        h.next = head;
+        
+        ListNode previous = h;
+        ListNode current = h.next;
+        int val = current.val;
+        boolean flag = false;
+        
+        while(current.next!=null) {
+            if(current.next.val == val) {
+                flag = true;
+                current = current.next;
+                previous.next = current;
+            } else {
+                if(current.val == val && flag == true) {
+                    previous.next = current.next;
+                    current = current.next;
+                } else {
+                    previous = current;
+                    current = current.next;                    
+                }
+                val = current.val;
+                flag = false;
+            }
+        }
+        
+        if(current.val == val && flag == true)
+            previous.next = current.next;
+          
+        return h.next;
+    }
+}
