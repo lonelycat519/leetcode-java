@@ -4,40 +4,17 @@
 
 public class Solution {
     public int removeElement(int[] A, int elem) {
-        Arrays.sort(A);
+        // Start typing your Java solution below
+        // DO NOT write main() function
+        if(A.length == 0) return 0;
         
-        int now = 0;
-        int after = 0;
-        boolean find = false;
-        boolean fin = false;
-        
-        for(int i=0; i<A.length; i++){
-            if(A[i]==elem){
-                now=i;
-                find = true;
-                break;
-            }
+        int len = 0;
+        for(int i=0; i<A.length; i++) {
+            if(A[i] != elem) {
+                A[len++] = A[i];
+            }      
         }
         
-        if(find)
-            for(int i=now+1; i<A.length; i++){
-                if(A[i]!=elem){
-                    after = i;
-                    fin = true;
-                    break;
-                }
-            }
-        
-        if(!fin)
-            after = A.length;
-        
-        if(!find)   return A.length;
-        else{
-            int len = A.length-(after-now);
-            for(; after<A.length;)
-                A[now++]=A[after++];
-            
-            return len;
-        }
+        return len;
     }
 }
