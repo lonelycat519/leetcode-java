@@ -49,3 +49,34 @@ public class Solution {
         return head;
     }
 }
+
+
+// Version 2   
+public class Solution {
+    public ListNode removeNthFromEnd(ListNode head, int n) {
+        // Start typing your Java solution below
+        // DO NOT write main() function
+        if(head==null)
+            return null;
+        
+        ListNode start = head;
+        ListNode end = head;
+        int i = 1;
+        
+        while(i<n) {
+            end = end.next;
+            i++;
+        }
+        
+        if(end.next == null)
+            return head.next;
+        else {
+            while(end.next.next!=null) {
+                start = start.next;
+                end = end.next;
+            }
+            start.next = start.next.next;
+            return head;
+        }
+    }
+}
