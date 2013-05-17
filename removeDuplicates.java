@@ -26,3 +26,22 @@ public class Solution {
         return len;
     }
 }
+
+// Version 2
+public class Solution {
+    public int removeDuplicates(int[] A) {
+        // Start typing your Java solution below
+        // DO NOT write main() function
+        if(A.length == 0)
+            return 0;
+        
+        int current = 0;
+        for(int i=1; i<A.length; i++) {
+            if(A[i] != A[current]) {
+                A[++current] = A[i];
+            }
+        }
+        
+        return current+1;
+    }
+}
